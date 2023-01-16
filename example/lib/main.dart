@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  MaxSupportedResoltion? _maxSupportedResoltion;
+  MaxSupportedResolution? _maxSupportedResoltion;
   final _resolutionDetectorPlugin = ResolutionDetector();
 
   @override
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    MaxSupportedResoltion? maxSupportedResolution;
+    MaxSupportedResolution? maxSupportedResolution;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {

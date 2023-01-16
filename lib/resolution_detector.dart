@@ -1,36 +1,49 @@
 import 'resolution_detector_platform_interface.dart';
 
 class ResolutionDetector {
+  // Create a singleton instance of the ResolutionDetector
   static final ResolutionDetector _resolutionDetector =
-  ResolutionDetector._internal();
-
+      ResolutionDetector._internal();
   factory ResolutionDetector() => _resolutionDetector;
-
   ResolutionDetector._internal();
 
-  MaxSupportedResoltion? _maxSupportedResoltion;
+  //Cache to store the maximum supported resolution
+  MaxSupportedResolution? _maxSupportedResolution;
 
-  Future<MaxSupportedResoltion?> getMaxResolution() async {
-    if (_maxSupportedResoltion != null) return _maxSupportedResoltion;
-    String? resolution = await ResolutionDetectorPlatform.instance.getMaxResolution();
-    _maxSupportedResoltion = resolution.resolveResolution();
-    return _maxSupportedResoltion;
+  /// returns the maximum supported resolution for the device
+  Future<MaxSupportedResolution?> getMaxResolution() async {
+    //Check if the resolution is already stored in the cache
+    if (_maxSupportedResolution != null) return _maxSupportedResolution;
+    //Calling the platform-specific method
+    String? resolution =
+        await ResolutionDetectorPlatform.instance.getMaxResolution();
+    //Storing the resolution in the cache
+    _maxSupportedResolution = resolution.resolveResolution();
+    return _maxSupportedResolution;
   }
 }
 
-enum MaxSupportedResoltion { res4K, res1080p, res720p }
+//Enumeration of supported resolutions
+enum MaxSupportedResolution { res4K, res1080p, res720p }
 
+//Extension to resolve the resolution from the string
 extension _ResolveResolution on String? {
-  MaxSupportedResoltion? resolveResolution() {
+  MaxSupportedResolution? resolveResolution() {
+    //Checking if the resolution is null
     if (this == null) return null;
+    //Splitting the string and getting the first element as int
     int? res = this!.split('x').map((e) => int.tryParse(e)).toList().first;
-    if(res==null) return null;
+    //Checking if the value is null
+    if (res == null) return null;
     if (res >= 2160) {
-      return MaxSupportedResoltion.res4K;
+      //Checking for 4K resolution
+      return MaxSupportedResolution.res4K;
     } else if (res >= 1080) {
-      return MaxSupportedResoltion.res1080p;
+      //Checking for 1080p resolution
+      return MaxSupportedResolution.res1080p;
     } else {
-      return MaxSupportedResoltion.res720p;
+      //Checking for 720p resolution
+      return MaxSupportedResolution.res720p;
     }
   }
 }

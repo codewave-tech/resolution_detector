@@ -11,7 +11,8 @@ class MethodChannelResolutionDetector extends ResolutionDetectorPlatform {
 
   @override
   Future<String?> getMaxResolution() async {
-    final maxResolution = await methodChannel.invokeMethod<String>('getMaxResolution');
+    final maxResolution =
+        await methodChannel.invokeMethod<String>('getMaxResolution');
     return maxResolution;
   }
 }
