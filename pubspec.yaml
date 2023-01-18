@@ -37,6 +37,8 @@ flutter:
       android:
         package: com.taars.resolution_detector
         pluginClass: ResolutionDetectorPlugin
+      ios:
+        pluginClass: SwiftResolutionDetectorPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
