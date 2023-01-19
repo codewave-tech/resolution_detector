@@ -1,5 +1,7 @@
 import Flutter
 import UIKit
+import Foundation
+import AVFoundation
 
 public class SwiftResolutionDetectorPlugin: NSObject, FlutterPlugin {
 
@@ -24,6 +26,7 @@ public class SwiftResolutionDetectorPlugin: NSObject, FlutterPlugin {
                 }
             }
             result("\(maxResolution.width)x\(maxResolution.height)")
+           
         } else {
             result(FlutterMethodNotImplemented)
         }

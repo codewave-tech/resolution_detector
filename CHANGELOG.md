@@ -5,3 +5,7 @@
 ## 2.0.0
 
 - added ios support
+
+## 2.0.1
+
+- fixed ios import

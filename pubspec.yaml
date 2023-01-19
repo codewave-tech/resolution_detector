@@ -1,6 +1,6 @@
 name: resolution_detector
 description: A Flutter plugin to get the maximum supported video resolution.
-version: 1.0.0
+version: 2.0.1
 homepage: https://github.com/t0uh33d/resolution_detector
 
 environment:
