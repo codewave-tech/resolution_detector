@@ -32,7 +32,9 @@ extension _ResolveResolution on String? {
     //Checking if the resolution is null
     if (this == null) return null;
     //Splitting the string and getting the first element as int
-    int? res = this!.split('x').map((e) => int.tryParse(e)).toList().first;
+    List<int?> _x =
+        this!.split('x').map((e) => num.tryParse(e)?.toInt()).toList();
+    int? res = _x.getMax;
     //Checking if the value is null
     if (res == null) return null;
     if (res >= 2160) {
@@ -45,5 +47,17 @@ extension _ResolveResolution on String? {
       //Checking for 720p resolution
       return MaxSupportedResolution.res720p;
     }
+  }
+}
+
+extension _MaxResolution on List<int?> {
+  int? get getMax {
+    int? max = -1;
+    for (int idx = 0; idx < length; idx++) {
+      if (this[idx] != null && this[idx]! > max!) {
+        max = this[idx];
+      }
+    }
+    return max;
   }
 }
